@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './resources/LegalConnect.svg';
+import './CSS/App.css';
 
 function App() {
   return (
@@ -7,15 +7,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          LegalConnect
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/Mohit-0918/LegalConnect"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Where Law Meets Connection, Solution Unfolds
         </a>
       </header>
     </div>
