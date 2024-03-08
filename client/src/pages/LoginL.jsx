@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const LoginL = () => {
   const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -71,14 +71,12 @@ const Login = () => {
         <Grid container spacing={3} style={{display:"flex" ,justifyContent:"center"}}>
           {/* User Panel */}
           <Grid item xs={6} >
-            <Paper elevation={3} style={{
-              padding:"20px",
+            <Paper elevation={3} style={{ padding:"20px",
       borderRadius: '16px',
       width: '80%',
-      height: '120%'
-    }}>
+      height: '120%'}}>
               <Typography variant="h5" gutterBottom>
-                User Login
+                Lawyer Login
               </Typography>
               <TextField
                 label="Email"
@@ -114,7 +112,7 @@ const Login = () => {
                 variant="contained"
                 // color="primary"
                 onClick={handleUserLogin}
-                style={{backgroundColor:"#f7c10f",display:"flex",margin:"auto"}}
+                style={{backgroundColor:"#f7c10f",display:"flex",margin:"auto",justifySelf:"center",alignSelf:"center"}}
               >
                 Login
               </Button>
@@ -172,4 +170,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginL;
