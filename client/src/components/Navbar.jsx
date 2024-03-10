@@ -18,9 +18,11 @@ import InfoIcon from "@mui/icons-material/Info";
 import GroupsIcon from '@mui/icons-material/Groups';
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
+    const navigate = useNavigate();
     const menuOptions = [
       {
         text: "home",
@@ -56,7 +58,7 @@ const Navbar = () => {
           <a href="">Testimonials</a>
           <a href="">Contact</a>
           
-          <button className="primary-button">Login</button>
+          <button className="primary-button" onClick={()=>{navigate("/login")}}>Login</button>
         </div>
         <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
