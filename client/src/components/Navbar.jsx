@@ -45,7 +45,7 @@ const Navbar = () => {
      
     ];
     return (
-      <nav>
+      <nav className="navbar" >
         <div className="navbar-logo-container">
             <img src={logo} alt=""/>
         </div>
