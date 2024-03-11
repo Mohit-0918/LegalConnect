@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BannerBackground from "../resources/home-banner-background.png";
 import {
   Container,
   Grid,
@@ -67,8 +68,12 @@ const LoginL = () => {
 
   return (
     <>
-      <Container maxWidth="lg" style={{ marginTop: "250px" }}>
-        <Grid container spacing={3} style={{display:"flex" ,justifyContent:"center"}}>
+      <Container>
+      <div className="home-bannerImage-container">
+          <img src={BannerBackground} alt="" />
+        </div>
+      <Container maxWidth="lg" style={{  marginTop: "230px", width: "100%", display: "flex", justifyContent: "center", marginLeft: "auto" }}>
+        <Grid container spacing={3} style={{display:"flex " ,justifyContent:"center",alignItems:"center", marginLeft:"70px" }}>
           {/* User Panel */}
           <Grid item xs={6} >
             <Paper elevation={3} style={{ padding:"20px",
@@ -165,6 +170,7 @@ const LoginL = () => {
             </Paper>
           </Grid> */}
         </Grid>
+      </Container>
       </Container>
     </>
   );

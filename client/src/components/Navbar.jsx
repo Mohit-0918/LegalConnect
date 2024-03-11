@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../resources/legallogo.jpg";
+import logo from "../resources/LegalConnectshort.png";
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {
