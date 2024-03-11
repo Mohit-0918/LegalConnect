@@ -3,7 +3,7 @@ import Register from "./pages/Register";
 import Home from "./pages/home";
 import Login from "./pages/Login";
 import PersonalProfile from "./pages/lawyerprofile.jsx"
-
+import LoginL from "./pages/LoginL.jsx"
 function App() {
 
   return (
@@ -13,6 +13,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/lawyerprofile" element={<PersonalProfile />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/LoginL" element={<LoginL />} />
           {localStorage.getItem("token") ? (
             <>
               <Route path="/home" element={<Home />} />

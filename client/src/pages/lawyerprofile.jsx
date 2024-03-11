@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import "../CSS/lawyerprofile.css";  
 import BannerBackground from "../resources/home-banner-background.png";
 import ProfilePic from "../resources/john-doe-image.png";
+import Footer from "../components/Footer";
 
 const PersonalProfile = () => {
   return (
@@ -37,7 +38,9 @@ const PersonalProfile = () => {
             <Card/>
           </div>
         </div>
+        
       </div>
+      <Footer/>
     </div>
   );
 }

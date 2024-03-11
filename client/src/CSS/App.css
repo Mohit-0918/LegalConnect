@@ -34,8 +34,20 @@ nav {
   z-index:999;
   background-color:#f6f6f6;
   overflow:hidden
-  
 }
+.navbar-logo-container{
+  margin-left: 60px;
+  position: flex;
+  max-width: 200px;
+  max-height: 200px;
+  transform: scale(1.4);
+}  
+.nav-logo-container img{
+  transform: scale(20);
+}
+
+
+
 .navbar-menu-container {
   display: none;
   background-color: #f6f6f6;
@@ -48,6 +60,11 @@ nav {
   font-size: 1.1rem;
   font-weight: 600;
  
+}
+
+.navbar-links-container a:hover {
+  text-decoration: underline; /* Add underline effect on hover */
+  font-size: 1.3rem;
 }
 .primary-button {
   padding: 0.9rem 1.75rem;
@@ -212,7 +229,10 @@ nav {
   margin-top: 10rem;
 }
 .footer-logo-container {
-  max-width: 110px;
+  margin-left: 6px;
+  position: flex;
+  max-width: 200px;
+  max-height: 200px;
 }
 .footer-icons {
   margin-top: 2.5rem;
