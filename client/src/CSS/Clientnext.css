@@ -36,13 +36,14 @@ max-height: 200px fit-content;
 
 }
 .cardshadow2{
-    background-color: white;
-    padding :40px;
-    border :solid 2px black;
-margin-top: 30px;
-max-width: 1150px;
-max-height: fit-content;
+  background-color: white;
+  padding :40px;
+  border :solid 2px black;
+  margin-top: 30px;
+  max-width: 1150px;
+  max-height: fit-content;
 }
+
 .cardshadow3{
     background-color: white;
     padding :30px;
@@ -63,6 +64,12 @@ margin-bottom: 10px;
   }
   .btn{
     color: white;
+  }
+  .input1{
+    width: 600px; /* Increase width */
+    height: 400px;
+
+
   }
 /*.col-lg-9{
     max-Height:'200px';
