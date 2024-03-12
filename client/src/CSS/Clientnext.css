@@ -1,0 +1,146 @@
+.container{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 25px;
+}
+.container2{
+    background-color: white;
+    padding :40px;
+    border :solid #3b475c;
+margin-top: 5px;
+max-width: fit-content;
+max-height: fit-content;
+}
+.maincontainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #3b475c;
+    padding :20px;
+    border :0;
+margin-top: 10px;
+max-width: fit-content;
+max-height: fit-content;
+justify-content: center;
+align-items: center;
+border :0;
+
+}
+.cardshadow1{
+    background-color: white;
+    padding :30px;
+    display: flex;
+    border :solid 2px #3b475c;
+margin-top: 10px;
+max-width: 1150px;
+max-height: 200px fit-content;
+
+}
+.cardshadow2{
+    background-color: white;
+    padding :40px;
+    border :solid 2px black;
+margin-top: 30px;
+max-width: 1150px;
+max-height: fit-content;
+}
+.cardshadow3{
+    background-color: white;
+    padding :30px;
+    border :solid 2px black;
+
+max-width: 1150px;
+max-height: fit-content;
+margin-top: 30px;
+margin-bottom: 10px;
+
+}
+.text-center {
+    background-color: #d3ac2b; /* Change to your desired color */
+    color: #ffffff; 
+    max-width: 80px;
+    margin-left: 70px;
+    /* Change to your desired text color */
+  }
+  .btn{
+    color: white;
+  }
+/*.col-lg-9{
+    max-Height:'200px';
+     overflowY:scroll;
+
+}
+
+.rounded-circle{
+    margin: 3;
+    width: 80px;
+}
+.p-2{
+    max-height: 1000px;
+}
+// Clientnext.jsx
+/*
+import React from 'react';
+import BannerBackground from "../resources/home-banner-background.png";
+
+import img1 from '../resources/client-image.jpg';
+import '../CSS/Clientnext.css'; // Import the CSS file
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Clientnext = () => {
+  return (
+    <div className='leadcontainer'>
+      <div>
+      <div className="home-bannerImage-container">
+        <img src={BannerBackground} alt="" />
+      </div>
+    <div className='container'>
+      <div className='container2'>
+          <div className='maincontainer'>
+            <div className='cardshadow1 border-0 m-4'>
+              <div className='row'>
+                <div className='col-lg-3'>
+                  <img src={img1} alt='' className='rounded-circle m-3 ' style={{width:'80px'}}/>
+                  <p className='m-3 h3'>Client Name</p>
+                </div>
+                <div className='col-lg-9'style={{maxHeight:'200px', overflowY:'scroll',}}>
+                  <p className='p-2'>
+                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className='cardshadow2'>
+              <div className='row'>
+                <div className='col-lg-3'>
+                  <img src={img1} alt='' className='rounded-circle m-3 card-img' />
+                  <p className='m-3 h3 card-title'>Lawyer Name</p>
+                </div>
+                <div className='col-lg-9'style={{maxHeight:'200px', overflowY:'scroll',}}>
+                  <p className='p-2'>
+                    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className='cardshadow3'>
+              <p className='h3 payment-mode'>Payment Mode</p>
+              <div className='p-3'>
+                <select className='form-select w-100'>
+                  <option disabled selected>select option</option>
+                  <option value="1">Date-wise payment</option>
+                  <option value="2">One time payment</option>
+                </select>
+              </div>
+              <div className='text-center'>
+                <button type="button" className="btn btn-info text-white">Submit</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  );
+};
+
+export default Clientnext;*/
