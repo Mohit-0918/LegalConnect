@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BannerBackground from "../resources/home-banner-background.png";
 import {
   Container,
   Paper,
@@ -52,7 +53,11 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="sm" style={{ marginTop: "200px" }}>
+ <Container>
+        <div className="home-bannerImage-container">
+          <img src={BannerBackground} alt="" />
+        </div>
+     <Container maxWidth="sm" style={{ marginTop: "200px" }}>
       <Paper elevation={3} style={{ padding: "20px" }}>
         <Typography variant="h5" gutterBottom>
           Register
@@ -140,6 +145,7 @@ const Register = () => {
         </form>
       </Paper>
     </Container>
+ </Container>
   );
 };
 

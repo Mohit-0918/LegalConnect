@@ -19,9 +19,10 @@ const PersonalProfile = () => {
           <p>MY PROFILE</p>
           <img src={ProfilePic} alt="" />
           <p>Name</p>
-          <input id="LN" type="text" />
+          <input id="LN" placeholder ="Name" type="text" />
           <p>Rating</p>
-          <input id="LN" type="text" />
+          
+          <input id="LN" placeholder ="Rating.." type="text" />
         </div>
         <div className="caseType">
           <p>DESCRIPTION</p>

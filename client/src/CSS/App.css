@@ -63,9 +63,11 @@ nav {
 }
 
 .navbar-links-container a:hover {
-  text-decoration: underline; /* Add underline effect on hover */
+  /* Add underline effect on hover */
+  border-bottom: 2px solid #fe9e0d; 
   font-size: 1.3rem;
 }
+
 .primary-button {
   padding: 0.9rem 1.75rem;
   background-color: white;
