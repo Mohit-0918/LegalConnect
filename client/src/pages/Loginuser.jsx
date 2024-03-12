@@ -124,52 +124,6 @@ const Login = () => {
               </Button>
             </Paper>
           </Grid>
-
-          {/* Lawyer Panel */}
-          {/* <Grid item xs={6}>
-            <Paper elevation={3} style={{ padding: "20px" }}>
-              <Typography variant="h5" gutterBottom>
-                Lawyer Login
-              </Typography>
-              <TextField
-                label="Username"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={lawyerCredentials.username}
-                onChange={(e) =>
-                  setLawyerCredentials({
-                    ...lawyerCredentials,
-                    username: e.target.value,
-                  })
-                }
-              />
-              <TextField
-                label="Password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={lawyerCredentials.password}
-                onChange={(e) =>
-                  setLawyerCredentials({
-                    ...lawyerCredentials,
-                    password: e.target.value,
-                  })
-                }
-              />
-              <Grid item xs={12} style={{ margin: "10px" }}>
-                <Link to="/register">Not Registered?</Link>
-              </Grid>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleLawyerLogin}
-              >
-                Login
-              </Button>
-            </Paper>
-          </Grid> */}
         </Grid>
       </Container>
         </Container>
