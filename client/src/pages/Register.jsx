@@ -17,12 +17,9 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    userType: "",
     password: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -30,9 +27,11 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5000/api/auth/register`, {
+    await fetch(`http://localhost:4000/register`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -41,11 +40,11 @@ const Register = () => {
     })
       .then(async (res) => {
         const tokenObject = await res.json();
-        if (tokenObject.message) {
-          navigate("/");
+        if (res.status===200) {
+          navigate("/loginIndex");
+        }else if (res.status === 400) {
+          setErrorMessage(tokenObject.message);
         }
-
-        // navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -64,23 +63,13 @@ const Register = () => {
         </Typography>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
-                label="First Name"
+                label="name"
                 variant="outlined"
                 fullWidth
-                name="firstName"
+                name="name"
                 value={formData.firstName}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Last Name"
-                variant="outlined"
-                fullWidth
-                name="lastName"
-                value={formData.lastName}
                 onChange={handleChange}
               />
             </Grid>
@@ -93,20 +82,6 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>User Type</InputLabel>
-                <Select
-                  label="User Type"
-                  name="userType"
-                  value={formData.userType}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="user">User</MenuItem>
-                  <MenuItem value="lawyer">Lawyer</MenuItem>
-                </Select>
-              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -143,6 +118,23 @@ const Register = () => {
             </Grid>
           </Grid>
         </form>
+
+        {errorMessage && (
+          <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
+            <Typography variant="body1">{errorMessage}</Typography>
+            {/* Optionally, include a login button */}
+            <Button
+              variant="contained"
+              onClick={() => {
+                // Handle login button click
+              }}
+            >
+              Login
+            </Button>
+          </Paper>
+        )}
+
+
       </Paper>
     </Container>
  </Container>

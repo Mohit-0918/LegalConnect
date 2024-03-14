@@ -14,6 +14,7 @@ function home() {
     <div className="home">
     <Navbar />
     <Home/>
+    //
     <About/>
    
     <Testimonial/>

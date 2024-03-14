@@ -16,10 +16,8 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [lawyerCredentials, setLawyerCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const handleUserLogin = async (e) => {
     // Handle user login logic
@@ -27,44 +25,27 @@ const Login = () => {
     console.log(userCredentials);
 
     // eslint-disable-next-line no-undef
-    await fetch(`http://localhost:5000/api/auth/login`, {
+    await fetch(`http://localhost:4000/loginuser`, {
       method: "POST",
       body: JSON.stringify(userCredentials),
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then(async (res) => {
-        const tokenObject = await res.json();
-        localStorage.setItem("token", tokenObject.token);
-        navigate("/home");
+    }).then(async (res) => {
+        if (res.status === 200) {
+          const tokenObject = await res.json();
+          localStorage.setItem("token", tokenObject.token);
+          navigate("/");
+        } else if (res.status === 400) {
+          const errorData = await res.json();
+          setErrorMessage(errorData.message);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleLawyerLogin = async (e) => {
-    // Handle lawyer login logic
-    e.preventDefault();
-
-    // eslint-disable-next-line no-undef
-    await fetch(`http://localhost:5000/api/auth/login`, {
-      method: "POST",
-      body: JSON.stringify(lawyerCredentials),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (res) => {
-        const tokenObject = await res.json();
-        localStorage.setItem("token", tokenObject.token);
-        navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
         <Container>
@@ -126,6 +107,13 @@ const Login = () => {
           </Grid>
         </Grid>
       </Container>
+      {errorMessage && (
+        <div className="popup">
+          <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
+            <Typography variant="body1">{errorMessage}</Typography>
+          </Paper>
+        </div>
+      )}
         </Container>
   
   );

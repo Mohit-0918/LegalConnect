@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import LoginU from "./pages/Loginuser.jsx";
 import PersonalProfile from "./pages/lawyerprofile.jsx"
 import LoginL from "./pages/Loginlawyer.jsx"
