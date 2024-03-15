@@ -7,9 +7,9 @@ import LoginL from "./pages/Loginlawyer.jsx"
 import LoginIndex from "./pages/LoginIndex.jsx";
 import Clientnext from "./pages/Clientnext.jsx";
 import Lawyerregister from "./pages/lawyerregister.jsx";
-import Clientpostost from "./pages/clientpost.jsx";
-import Hirelaw from "./pages/hirelawyer.jsx";
 import ClientPost from "./pages/clientpost.jsx";
+import Hirelaw from "./pages/hirelawyer.jsx";
+import MyPost from "./pages/consultlawyer.jsx";
 
 function App() {
 
@@ -27,6 +27,8 @@ function App() {
   q       <Route path="/hirelaw" element={<Hirelaw />} />
           <Route path="/lawyerregister" element={<Lawyerregister/>} />
           <Route path="/clientpost" element={<ClientPost/>} />
+          <Route path="/consultlawyer" element={<MyPost/>} />
+
 
 
           {localStorage.getItem("token") ? (
