@@ -6,7 +6,7 @@ import PersonalProfile from "./pages/lawyerprofile.jsx"
 import LoginL from "./pages/Loginlawyer.jsx"
 import LoginIndex from "./pages/LoginIndex.jsx";
 import Clientnext from "./pages/Clientnext.jsx";
-
+import Hirelaw from "./pages/hirelawyer.jsx";
 function App() {
 
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path="/loginlawyer" element={<LoginL />} />
           <Route path="/loginuser" element={<LoginU />} />
           <Route path="/clientnext" element={<Clientnext />} />
+          <Route path="/hirelaw" element={<Hirelaw />} />
 
           {localStorage.getItem("token") ? (
             <>

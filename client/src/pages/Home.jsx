@@ -7,7 +7,7 @@ import Testimonial from '../components/Testimonials';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Navbar from "../components/Navbar.jsx";
-
+import Work from "../components/Work.jsx";
 
 function home() {
   return (
@@ -16,7 +16,7 @@ function home() {
     <Home/>
     //
     <About/>
-   
+    <Work/>
     <Testimonial/>
     <Contact/>
     <Footer/>
