@@ -47,7 +47,7 @@ const ClientPost = () => {
         <Form>
             <Form.Group className="mb-3">
               <Form.Select //make this changes like adding name and onchange function to every  select field
-              name ="areaoflaw" 
+              name ="areaoflaw"
               onChange={handleChange}
               aria-label="Default select example" defaultValue="">
               <option disabled value="">Area of Law</option>
@@ -62,8 +62,33 @@ const ClientPost = () => {
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
+
               <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder="title " />
+              <Form.Control type="title" name ="title" onChange={handleChange} placeholder="Title " />
+              <Form.Text muted>
+                contain letters and numbers, and must not contain spaces,
+                special characters, or emoji.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="AA mb-3">
+  <Form.Label></Form.Label>
+  <Form.Control
+    as="textarea"
+    rows={3} // Set the number of rows as needed
+    name="question"
+    onChange={handleChange}
+    placeholder="Question"
+  />
+  <Form.Text muted>
+    Contain letters and numbers, and must not contain spaces,
+    special characters, or emoji.
+  </Form.Text>
+</Form.Group>
+            <div className="A">
+            <Form.Group className="mb-3">
+              <Form.Label></Form.Label>
+              <Form.Control type="city" name ="city"onChange={handleChange} placeholder=" City" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -71,7 +96,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder=" Question"/>
+              <Form.Control type="state" name ="state"onChange={handleChange} placeholder="State" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -79,7 +104,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder=" City" />
+              <Form.Control type="pincode"name ="pincode" onChange={handleChange} placeholder="PIN CODE" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -87,23 +112,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder="State" />
-              <Form.Text muted>
-                contain letters and numbers, and must not contain spaces,
-                special characters, or emoji.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder="PIN CODE" />
-              <Form.Text muted>
-                contain letters and numbers, and must not contain spaces,
-                special characters, or emoji.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label></Form.Label>
-              <Form.Control type="email" onChange={handleChange} placeholder="Phone number.Optional" />
+              <Form.Control type="phonenumber" name ="phonenumber"onChange={handleChange} placeholder="Phone number" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -113,7 +122,9 @@ const ClientPost = () => {
             <div className="">
             <button className='secondary-button'>Submit</button>
             </div>
+            </div>
           </Form>
+
     </div>
     </div>
     <Footer/>

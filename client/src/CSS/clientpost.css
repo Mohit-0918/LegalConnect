@@ -40,3 +40,10 @@
   .secondary-button:hover {
     background-color: #e48f0f;
   }
+  .AA .form-control {
+    height: 150px;
+    text-align: top; /* Adjust the height as needed */
+  }
+  .ABCD {
+    height:80px; /* Adjust the height as needed */
+  }

@@ -43,7 +43,7 @@ const Navbar = () => {
         text: "Contact",
         icon: <PhoneRoundedIcon/>,
       },
-     
+
     ];
     return (
       <nav className="navbar" >
@@ -53,16 +53,16 @@ const Navbar = () => {
         <div className="navbar-links-container">
           <a href="">Home</a>
           <a href="">About us</a>
-          
+
           <a href="">Testimonials</a>
           <a href="">Contact</a>
-          
+
           <button className="primary-button" onClick={()=>{navigate("/loginIndex")}}>Login</button>
         </div>
         <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
       </div>
-      
+
     </nav>
   );
 };
