@@ -1,23 +1,26 @@
 import React from "react";
+import dsa from "../resources/ask (1).png";
+import reshot from "../resources/reshot.png";
+import consul from "../resources/ask (3).png";
 
 
 const Work = () => {
   const workInfoData = [
     {
-     
-      title: "Hire a lawyer",
-      text: "Send a legal notice, review a legal document, etc.",
+      image:reshot,
+      title: "Hire your lawyer",
+      text: "Send a legal notice, review a legal document, cases  etc.",
       button:"Get Lawyer"
 
     },
     {
-      
+      image:dsa,
       title: "Ask a Question",
       text: "Get legal answers from lawyers. It’s quick, easy, and anonymous!",
       button:"Get advice"
     },
     {
-      
+      image:consul,
       title: "Consult Laywer",
       text: "Schedule a 15-minute call with a lawyer.It’s quick, easy, and confidential!",
      button:"Consult"
@@ -37,6 +40,9 @@ const Work = () => {
       <div className="work-section-bottom">
         {workInfoData.map((data) => (
           <div className="work-section-info" key={data.title}>
+            <div className="info-boxes-img-container">
+              <img src={data.image} alt="" />
+            </div>
              
             <h2>{data.title}</h2>
             <p>{data.text}</p>
