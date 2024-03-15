@@ -13,14 +13,14 @@ import Footer from "../components/Footer";
 
 const ClientPost = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({//use te new names @garima
     areaoflaw: "",
-    questiontitle: "",
-    typeyourquestionhere: "",
-    mycity: "",
-    mystate: "",
-    pincode: "",
-    myphonenumberOptional: "",
+    questiontitle: "",//new name:title
+    typeyourquestionhere: "",//question
+    mycity: "",//city
+    mystate: "",//state
+    pincode: "",//pincode
+    myphonenumberOptional: "",//phonenumber
   });
    const [selectedOption, setSelectedOption] = useState('');
   const [showInput, setShowInput] = useState(false);
@@ -38,7 +38,7 @@ const ClientPost = () => {
   };
     return(
       <div>
-           <Navbar/>
+        <Navbar/>
       <div className="Container">
         <div className="home-bannerImage-container">
         <img src={BannerBackground} alt="" />
@@ -46,9 +46,11 @@ const ClientPost = () => {
         <div>
         <Form>
             <Form.Group className="mb-3">
-              <Form.Label></Form.Label>
-              <Form.Select aria-label="Default select example" defaultValue="">
-        <option disabled value="">Area of Law</option>
+              <Form.Select //make this changes like adding name and onchange function to every  select field
+              name ="areaoflaw" 
+              onChange={handleChange}
+              aria-label="Default select example" defaultValue="">
+              <option disabled value="">Area of Law</option>
                 <option value="1">Family Law</option>
                 <option value="2">Criminal Law</option>
                 <option value="3">Consumer Law</option>
@@ -57,8 +59,6 @@ const ClientPost = () => {
                 <option value="1">Constitutional Law</option>
                 <option value="1">Intellectual Law</option>
                 <option value="1">Taxation </option>
-
-
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
