@@ -2,6 +2,7 @@ import React from "react";
 import ProfilePic from "../resources/john-doe-image.png";
 import { AiFillStar } from "react-icons/ai";
 
+
 const Testimonial = () => {
   return (
     <div className="work-section-wrapper">
@@ -17,6 +18,7 @@ const Testimonial = () => {
         I have access to clients from all industries and have been able to get 
         a steady flow of work from the platform. I have and will continue to recommend
         this platform to all my colleagues.
+        
         </p>
         <div className="testimonials-stars-container">
           <AiFillStar />
