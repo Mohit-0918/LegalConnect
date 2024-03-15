@@ -1,23 +1,42 @@
 import mongoose from "mongoose";
 
 const Post = new mongoose.Schema({
-    casetype:{
+    areaoflaw:{
         type:String,
         required:true,
         unique:false,
     },
-   area:{
+   title:{
         type: String,
         require: true,
-        unique:true,
+        unique:false,
     },
-    password:{
+    question:{
         type:String,
-        require:true,
+        required:true,
+        unique:false,
     },
-    type:{
+    city:{
         type:String,
-        default:"C",
+        required:true,
+        unique:false,
+    },
+    state:{
+        type:String,
+        required:true,
+        unique:false,
+    },
+    pincode:{
+        type:Number,
+        minlength:6, 
+        required:true,
+        unique:false,
+    },
+    phonenumber:{
+        type: Number,
+        match:/^[0-9]{10}$/, 
+        required: true,
+        unique:false,
     }
 },{timestamps:true}
 ); 
