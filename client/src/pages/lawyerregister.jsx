@@ -23,6 +23,9 @@ const Register = () => {
     email: "",
     userType: "",
     password: "",
+    barc:"",
+    practisingarea:"",
+    caseCategory: "",
     errors: {
       firstName: false,
       lastName: false,
@@ -35,12 +38,26 @@ const Register = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [showInput, setShowInput] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [Option, setOption] = useState('');
+  // Handle form data changes
 
   const handleOptionChange = (event) => {
     const { value } = event.target;
     setSelectedOption(value);
     setShowInput(value === '1'|| value === '2');
-// Show additional inputs if option 1 is selected
+    setFormData({
+      ...formData,
+      userType: value,
+      // You can add more fields to formData if needed
+    });
+  };
+  const handlGenderChnange =(e)=>{
+    const {value}=e.target;
+    setOption(value);
+    setFormData({
+      ...formData,
+      gender: value,
+    });
   };
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -189,25 +206,6 @@ const Register = () => {
             />
             </Grid>
             <Grid item xs={12}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>Gender</InputLabel>
-                <Select
-                  label="Gender"
-                  name="gender"
-                  value={formData.userType}
-                  onChange={handleChange}
-                  helperText={
-                    formData.errors.gender
-                      ?  "Please enter select a valid option" : ""
-                  }
-                >
-                  <MenuItem value="1">Male</MenuItem>
-                  <MenuItem value="2">Female</MenuItem>
-                  <MenuItem value="3">Choose not to disclose</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
               <TextField
                 label="Password"
                 type="password"
@@ -237,15 +235,47 @@ const Register = () => {
             />
             </Grid>
             </Grid>
-            <div style={{ display: 'flex', flexDirection: 'column', width: '100%'}}>
-          <select className='form-select w-100' value={selectedOption} onChange={handleOptionChange}>
-            <option disabled value="">Select option</option>
-            <option value="1">Advocate</option>
-            <option value="2">Lawyer</option>
-            <option value="3">Paralegal</option>
-          </select>
-          </div>
-          {showInput && (
+            <Grid item xs={12}>
+            <FormControl variant="outlined" fullWidth>
+              <TextField
+                select
+                label="Gender"
+                name="gender"
+                value={Option}
+                onChange={handlGenderChnange}
+                variant="outlined"
+                style={{ marginTop: "20px" }}
+              >
+                <MenuItem value="" disabled>
+                  Gender
+                </MenuItem>
+                <MenuItem value="1">Male</MenuItem>
+                <MenuItem value="2">Female</MenuItem>
+                <MenuItem value="3">Choose Not To Disclose</MenuItem>
+              </TextField>
+            </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+            <FormControl variant="outlined" fullWidth >
+            <TextField
+              select
+              value={selectedOption}
+              onChange={handleOptionChange}
+              className="form-select"
+              name="userType"
+              label="User Type"
+              style={{ marginTop: "20px" }}
+            >
+              <MenuItem value="" disabled>
+                Select option
+              </MenuItem>
+              <MenuItem value="1">Advocate</MenuItem>
+              <MenuItem value="2">Lawyer</MenuItem>
+              <MenuItem value="3">Paralegal</MenuItem>
+            </TextField>
+          </FormControl>
+            </Grid>
+            {showInput && (
           <div className='Grids'>
             <Grid container  spacing={2}>
             {selectedOption !== '2' && (
@@ -255,9 +285,10 @@ const Register = () => {
                   type="Barc"
                   variant="outlined"
                   fullWidth
-                  name="Barc"
+                  name="abarc"
                   value={formData.barc}
                   onChange={handleChange}
+                  style={{amrginTop:"20px"}}
                 />
               </Grid>
             )}
@@ -268,7 +299,7 @@ const Register = () => {
                   type="Pratising area"
                   variant="outlined"
                   fullWidth
-                  name="Pratising area"
+                  name="practisingarea"
                   value={formData.password}
                   onChange={handleChange}
                 />
@@ -302,7 +333,7 @@ const Register = () => {
           </div>
           )}
           
-<div className='last'>
+          <div className='last'>
             <Grid item xs={12}>
               <Button
                 type="submit"
@@ -321,7 +352,7 @@ const Register = () => {
         </form>
       </Paper>
     </Container>
-</Container>
+ </Container>
   );
 };
 
