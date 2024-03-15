@@ -20,17 +20,54 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    errors: {
+      email: false,}
   });
+
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      const isValid = validateEmail(value);
+      setFormData({
+        ...formData,
+        errors: {
+          ...formData.errors,
+          email: !isValid,
+        },
+      });
+    }
+  };
+  const validateEmail = (email) => {
+    // Regular expression to match email format
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const emptyFields = Object.keys(formData).filter((key) => formData[key] === "");
+
+    // Set error state for empty fields
+    if (emptyFields.length > 0) {
+      const updatedErrors = {};
+      emptyFields.forEach((field) => {
+        updatedErrors[field] = true;
+      });
+      setFormData((prevData) => ({
+        ...prevData,
+        errors: { ...prevData.errors, ...updatedErrors },
+      }));
+      return;
+    }
     await fetch(`http://localhost:4000/register`, {
       method: "POST",
       body: JSON.stringify(formData),
@@ -81,6 +118,11 @@ const Register = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                onBlur={handleBlur}
+                error={formData.errors.email}
+                helperText={
+                formData.errors.email ? "Please enter a valid email address" : ""
+              }
               />
             </Grid>
             <Grid item xs={12}>
@@ -92,6 +134,10 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                helperText={
+                  formData.errors.password
+                    ?  "Please enter password" : ""
+                }
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,6 +149,9 @@ const Register = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
+                onBlur={() => setPasswordError(formData.password !== formData.confirmPassword)}
+                error={passwordError}
+                helperText={passwordError ? "Passwords do not match" : ""}
               />
             </Grid>
             <Grid item xs={12}>

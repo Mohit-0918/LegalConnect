@@ -321,7 +321,7 @@ const Register = () => {
         </form>
       </Paper>
     </Container>
- </Container>
+</Container>
   );
 };
 
