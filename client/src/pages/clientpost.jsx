@@ -15,12 +15,12 @@ const ClientPost = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({//use te new names @garima
     areaoflaw: "",
-    questiontitle: "",//new name:title
-    typeyourquestionhere: "",//question
-    mycity: "",//city
-    mystate: "",//state
+    title: "",//new name:title
+    question: "",//question
+    city: "",//city
+    state: "",//state
     pincode: "",//pincode
-    myphonenumberOptional: "",//phonenumber
+    phonenumber: "",//phonenumber
   });
    const [selectedOption, setSelectedOption] = useState('');
   const [showInput, setShowInput] = useState(false);
@@ -63,7 +63,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder="Question title" />
+              <Form.Control type="email" onChange={handleChange} placeholder="title " />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -71,7 +71,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder="Type your question here." />
+              <Form.Control type="email" onChange={handleChange} placeholder=" Question"/>
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -79,7 +79,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder=" My city" />
+              <Form.Control type="email" onChange={handleChange} placeholder=" City" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -87,7 +87,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder=" My State" />
+              <Form.Control type="email" onChange={handleChange} placeholder="State" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -95,7 +95,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder="PIN CODE" />
+              <Form.Control type="email" onChange={handleChange} placeholder="PIN CODE" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -103,7 +103,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="email" placeholder="My phone number.Optional" />
+              <Form.Control type="email" onChange={handleChange} placeholder="Phone number.Optional" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
