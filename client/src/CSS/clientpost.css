@@ -1,0 +1,42 @@
+.Container{
+    padding-top:20px;
+    margin-left: 400px;
+    margin-right: 400px;
+
+
+}
+.text-center {
+/* Change to your desired color */
+    color: #ffffff;
+    max-width: 80px;
+    margin-left: 370px;
+    margin-right:80 px;
+    /* Change to your desired text color */
+  }
+
+  .secondary-button {
+    padding: 1rem 2.5rem;
+    background-color: #fe9e0d;
+    outline: none;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+  .secondary-button svg {
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .secondary-button:hover {
+    background-color: #e48f0f;
+  }
