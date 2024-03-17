@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import BannerBackground from "../resources/home-banner-background.png";
 import {
   Container,
@@ -9,8 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 const Login = () => {
+  const {dispatch}= useContext(UserContext);
+
   const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -32,15 +35,26 @@ const Login = () => {
         "Content-Type": "application/json",
       },
     }).then(async (res) => {
-        if (res.status === 200) {
-          const tokenObject = await res.json();
-          localStorage.setItem("token", tokenObject.token);
-          navigate("/");
-        } else if (res.status === 400) {
+      if (res.status === 200) {
+        dispatch({type:"USER",payload:true});
+        const tokenObject = await res.json();
+        localStorage.setItem("token", tokenObject.token);
+        navigate("/");
+      } else if (res.status === 403) { // If user not found
+        setErrorMessage("Invalid username or password");
+      } else {
+        // Check if response is JSON
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          // Valid JSON response, parse it
           const errorData = await res.json();
-          setErrorMessage(errorData.message);
+          setErrorMessage(errorData.message || "An error occurred");
+        } else {
+          // Invalid JSON response, handle gracefully
+          setErrorMessage("An error occurred");
         }
-      })
+      }
+    })
       .catch((err) => {
         console.log(err);
       });

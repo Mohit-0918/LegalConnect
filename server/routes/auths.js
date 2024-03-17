@@ -1,5 +1,5 @@
 import express from "express";
-import { lawyerRregister, loginuser, register } from"../controllers/auth.js";
+import { lawyerRregister, loginlawyer, loginuser, register } from"../controllers/auth.js";
 
 const router =express.Router();
 
@@ -20,8 +20,10 @@ router.post("/google",)
 
 
 
-//
+//lawyer Regisertation
 router.post("/lawyerregister",lawyerRregister)
 
+//lawyer Login
+router.post('/loginlawyer',loginlawyer);
 
 export default router;

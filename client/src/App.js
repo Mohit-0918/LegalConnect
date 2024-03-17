@@ -10,11 +10,15 @@ import Lawyerregister from "./pages/lawyerregister.jsx";
 import ClientPost from "./pages/clientpost.jsx";
 import Hirelaw from "./pages/hirelawyer.jsx";
 import MyPost from "./pages/consultlawyer.jsx";
+import { createContext,useReducer} from "react";
+import { initialState,reducer } from "./reducer/UseReducer.js";
 
+export const UserContext=createContext();
 function App() {
-
+  const [state,dispatch]=useReducer(reducer,initialState);
   return (
     <>
+      <UserContext.Provider value={{state,dispatch}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,7 +28,7 @@ function App() {
           <Route path="/loginlawyer" element={<LoginL />} />
           <Route path="/loginuser" element={<LoginU />} />
           <Route path="/clientnext" element={<Clientnext />} />
-  q       <Route path="/hirelaw" element={<Hirelaw />} />
+          <Route path="/hirelaw" element={<Hirelaw />} />
           <Route path="/lawyerregister" element={<Lawyerregister/>} />
           <Route path="/clientpost" element={<ClientPost/>} />
           <Route path="/consultlawyer" element={<MyPost/>} />
@@ -38,6 +42,7 @@ function App() {
           ) : null}
         </Routes>
       </BrowserRouter>
+      </UserContext.Provider>
     </>
   );
 }

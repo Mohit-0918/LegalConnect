@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { createError } from "../error.js";
+import createError from "../error.js";
 import User from "../modles/ClientUsers.js"
 import Lawyer from "../modles/LawyerUsers.js"
 import jwt from "jsonwebtoken";
@@ -28,7 +28,7 @@ export const register =async (req,res,next)=>{
 export const loginuser =async (req,res,next)=>{
     try{
         const {email,password}=req.body;
-        const user =await  Lawyer.findOne({ email })
+        const user =await  User.findOne({ email })
         if(!user) return next(createError(404,"User not found!"))
 
         const isCorrect = await bcrypt.compare(password,user.password )
@@ -64,6 +64,31 @@ export const lawyerRregister =async (req,res,next)=>{
             return res.status(400).json({ message: "User with this email already exists. Please choose a different email." });
         }
         next(err);
+    }
+    
+}
+
+
+//login lawyer
+export const loginlawyer =async (req,res,next)=>{
+    try{
+        const {email,password}=req.body;
+        const lawyer=await  Lawyer.findOne({ email })
+        if(!lawyer) return next(createError(404,"User not found!"))
+
+        const isCorrect = await bcrypt.compare(password,lawyer.password )
+        //if(!isCorrect) return next(createError(400,"Wrong Password"))
+        if (!isCorrect) {
+            return next(createError(403, "Wrong password."));
+        }
+
+        const token =jwt.sign({id:lawyer._id},process.env.JWT)
+        const {Password, ...others}=lawyer._doc;
+        res.cookie("access_token",token,{
+            httpOnly:true
+        }).status(200).json(others);
+    }catch(err){
+        next(err)
     }
     
 }

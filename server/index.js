@@ -7,22 +7,13 @@ import clientregister from "./routes/auths.js";
 import loginuser from "./routes/auths.js";
 import cookieParser from "cookie-parser"
 import lawyerRegister from "./routes/auths.js";
+import lawyerlogin from "./routes/auths.js";
+
+
 const  app = express()
 app.use(express.json())
 app.use(cors())
 dotenv.config();
-
-
-//error handeling
-app.use((err,req,res,next)=>{
-    const status=err.status || 500;
-    const message=err.message ||"somwthing went wrong";
-    return res.status(status).json({
-        success:false,
-        status,
-        message
-    })
-})
 
 
 //DB connection
@@ -41,7 +32,19 @@ app.use(express.json())
 app.use("/" ,loginuser)
 app.use("/",clientregister)
 app.use("/",lawyerRegister)
+app.use("/",lawyerlogin)
 
+
+//error handeling
+app.use((err,req,res,next)=>{
+    const status=err.status || 500;
+    const message=err.message ||"somwthing went wrong";
+    return res.status(status).json({
+        success:false,
+        status,
+        message
+    })
+})
 
 app .listen(4000,()=>{
     connect();

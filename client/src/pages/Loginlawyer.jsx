@@ -12,11 +12,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LoginL = () => {
   const navigate = useNavigate();
-  const [userCredentials, setUserCredentials] = useState({
-    email: "",
-    password: "",
-  });
-  const [lawyerCredentials, setLawyerCredentials] = useState({
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [lawyerCredentials, setlawyerCredentials] = useState({
     email: "",
     password: "",
   });
@@ -24,32 +22,8 @@ const LoginL = () => {
   const handleUserLogin = async (e) => {
     // Handle user login logic
     e.preventDefault();
-    console.log(userCredentials);
-
-    // eslint-disable-next-line no-undef
-    await fetch(`http://localhost:5000/api/auth/login`, {
-      method: "POST",
-      body: JSON.stringify(userCredentials),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (res) => {
-        const tokenObject = await res.json();
-        localStorage.setItem("token", tokenObject.token);
-        navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleLawyerLogin = async (e) => {
-    // Handle lawyer login logic
-    e.preventDefault();
-
-    // eslint-disable-next-line no-undef
-    await fetch(`http://localhost:5000/api/auth/login`, {
+  
+    await fetch(`http://localhost:4000/loginlawyer`, {
       method: "POST",
       body: JSON.stringify(lawyerCredentials),
       headers: {
@@ -57,14 +31,30 @@ const LoginL = () => {
       },
     })
       .then(async (res) => {
-        const tokenObject = await res.json();
-        localStorage.setItem("token", tokenObject.token);
-        navigate("/home");
+        if (res.status === 200) {
+          const tokenObject = await res.json();
+          localStorage.setItem("token", tokenObject.token);
+          navigate("/");
+        } else if (res.status === 403) { // If user not found
+          setErrorMessage("Invalid username or password");
+        } else {
+          // Check if response is JSON
+          const contentType = res.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            // Valid JSON response, parse it
+            const errorData = await res.json();
+            setErrorMessage(errorData.message || "An error occurred");
+          } else {
+            // Invalid JSON response, handle gracefully
+            setErrorMessage("An error occurred");
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
 
   return (
     <>
@@ -74,7 +64,6 @@ const LoginL = () => {
         </div>
       <Container maxWidth="lg" style={{  marginTop: "230px", width: "100%", display: "flex", justifyContent: "center", marginLeft: "auto" }}>
         <Grid container spacing={3} style={{display:"flex " ,justifyContent:"center",alignItems:"center", marginLeft:"70px" }}>
-          {/* User Panel */}
           <Grid item xs={6} >
             <Paper elevation={3} style={{ padding:"20px",
       borderRadius: '16px',
@@ -88,10 +77,10 @@ const LoginL = () => {
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                value={userCredentials.email}
+                value={lawyerCredentials.email}
                 onChange={(e) =>
-                  setUserCredentials({
-                    ...userCredentials,
+                  setlawyerCredentials({
+                    ...lawyerCredentials,
                     email: e.target.value,
                   })
                 }
@@ -102,10 +91,10 @@ const LoginL = () => {
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                value={userCredentials.password}
+                value={lawyerCredentials.password}
                 onChange={(e) =>
-                  setUserCredentials({
-                    ...userCredentials,
+                  setlawyerCredentials({
+                    ...lawyerCredentials,
                     password: e.target.value,
                   })
                 }
@@ -123,55 +112,17 @@ const LoginL = () => {
               </Button>
             </Paper>
           </Grid>
-
-          {/* Lawyer Panel */}
-          {/* <Grid item xs={6}>
-            <Paper elevation={3} style={{ padding: "20px" }}>
-              <Typography variant="h5" gutterBottom>
-                Lawyer Login
-              </Typography>
-              <TextField
-                label="Username"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={lawyerCredentials.username}
-                onChange={(e) =>
-                  setLawyerCredentials({
-                    ...lawyerCredentials,
-                    username: e.target.value,
-                  })
-                }
-              />
-              <TextField
-                label="Password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={lawyerCredentials.password}
-                onChange={(e) =>
-                  setLawyerCredentials({
-                    ...lawyerCredentials,
-                    password: e.target.value,
-                  })
-                }
-              />
-              <Grid item xs={12} style={{ margin: "10px" }}>
-                <Link to="/register">Not Registered?</Link>
-              </Grid>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleLawyerLogin}
-              >
-                Login
-              </Button>
-            </Paper>
-          </Grid> */}
         </Grid>
       </Container>
+      {errorMessage && (
+        <div className="popup">
+          <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
+            <Typography variant="body1">{errorMessage}</Typography>
+          </Paper>
+        </div>
+      )}
       </Container>
+      
     </>
   );
 };
