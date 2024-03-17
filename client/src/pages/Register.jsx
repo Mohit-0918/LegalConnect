@@ -13,9 +13,15 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,9 +29,7 @@ const Register = () => {
     errors: {
       email: false,}
   });
-
-  const [passwordError, setPasswordError] = useState(false);
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -49,8 +53,6 @@ const Register = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
-
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,6 +80,8 @@ const Register = () => {
       .then(async (res) => {
         const tokenObject = await res.json();
         if (res.status===200) {
+          setSuccessMessage("Registration successful!");
+          setOpenSnackbar(true);
           navigate("/loginIndex");
         }else if (res.status === 400) {
           setErrorMessage(tokenObject.message);
@@ -86,6 +90,12 @@ const Register = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   return (
@@ -168,20 +178,27 @@ const Register = () => {
           </Grid>
         </form>
 
-        {errorMessage && (
-          <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
-            <Typography variant="body1">{errorMessage}</Typography>
-            {/* Optionally, include a login button */}
-            <Button
-              variant="contained"
-              onClick={() => {
-                // Handle login button click
-              }}
-            >
-              Login
-            </Button>
-          </Paper>
-        )}
+        <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message={successMessage}
+          />
+
+          {errorMessage && (
+            <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
+              <Typography variant="body1">{errorMessage}</Typography>
+              
+              <Button
+                variant="contained"
+                onClick={() => {
+                  // Handle login button click
+                }}
+              >
+                Login
+              </Button>
+            </Paper>
+          )}
 
 
       </Paper>

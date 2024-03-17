@@ -18,25 +18,26 @@ const LawyerUserSchema = new mongoose.Schema({
         require:true,
     },
     type:{
-        type:"L",
+        type:String,
+        default: 'L'
     },
     phone:{
         type:Number,
         require:true,
     },
-    casetype:{
+    caseCategory:{
         type:[String],
     },
-    areaofpractice:{
+    practisingarea:{
         type:String,
     },
     barc:{
         type:String,
     },
-    typeoflawyer:{
+    userType:{
         type:String,
     }
 },{timestamps:true}
 );
 
-export default mongoose.model("User", LawyerUserSchema); 
+export default mongoose.model("LawyerUsers", LawyerUserSchema); 

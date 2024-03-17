@@ -6,7 +6,7 @@ import userRoutes from "./routes/users.js";
 import clientregister from "./routes/auths.js";
 import loginuser from "./routes/auths.js";
 import cookieParser from "cookie-parser"
-
+import lawyerRegister from "./routes/auths.js";
 const  app = express()
 app.use(express.json())
 app.use(cors())
@@ -34,11 +34,13 @@ const connect = () => {
     setTimeout(connect, 5000);});
     };
     
+
 //endpoints
 app.use(cookieParser())
 app.use(express.json())
 app.use("/" ,loginuser)
 app.use("/",clientregister)
+app.use("/",lawyerRegister)
 
 
 app .listen(4000,()=>{

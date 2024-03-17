@@ -1,5 +1,5 @@
 import express from "express";
-import { loginuser, register } from"../controllers/auth.js";
+import { lawyerRregister, loginuser, register } from"../controllers/auth.js";
 
 const router =express.Router();
 
@@ -17,5 +17,11 @@ router.post("/loginuser",loginuser)
 
 //Google authentication
 router.post("/google",)
+
+
+
+//
+router.post("/lawyerregister",lawyerRregister)
+
 
 export default router;

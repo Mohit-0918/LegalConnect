@@ -12,9 +12,19 @@ import {
 
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
 
 const Register = () => {
   const navigate = useNavigate();
+  const confirmPassword=useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
+  const [showInput, setShowInput] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [Option, setOption] = useState('');
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -23,6 +33,7 @@ const Register = () => {
     email: "",
     userType: "",
     password: "",
+    confirmPassword: "",
     barc:"",
     practisingarea:"",
     caseCategory: "",
@@ -33,18 +44,24 @@ const Register = () => {
       email: false,
       userType: false,
       password: false,
+      barc:false,
+    practisingarea:false,
+    caseCategory: false,
     },
   });
-  const [selectedOption, setSelectedOption] = useState('');
-  const [showInput, setShowInput] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [Option, setOption] = useState('');
   // Handle form data changes
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  }
 
   const handleOptionChange = (event) => {
     const { value } = event.target;
     setSelectedOption(value);
-    setShowInput(value === '1'|| value === '2');
+    setShowInput(value === 'Advocate'|| value === 'Lawyer');
     setFormData({
       ...formData,
       userType: value,
@@ -101,38 +118,55 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const emptyFields = Object.keys(formData).filter((key) => formData[key] === "");
-
-    // Set error state for empty fields
+  
+    const requiredFields = ["firstName", "lastName", "phone", "email", "password", "gender", "userType"]; // Add field names you want to check for emptiness
+  
+    const emptyFields = Object.keys(formData)
+      .filter(key => requiredFields.includes(key)) // Filter only required fields
+      .filter(key => formData[key] === ""); // Filter empty fields
+  
     if (emptyFields.length > 0) {
       const updatedErrors = {};
-      emptyFields.forEach((field) => {
+      emptyFields.forEach(field => {
         updatedErrors[field] = true;
       });
-      setFormData((prevData) => ({
+      setFormData(prevData => ({
         ...prevData,
-        errors: { ...prevData.errors, ...updatedErrors },
+        errors: { ...prevData.errors, ...updatedErrors }
       }));
       return;
     }
-    await fetch(`http://localhost:5000/api/auth/register`, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (res) => {
-        const tokenObject = await res.json();
-        if (tokenObject.message) {
-          navigate("/");
-        }
-
-        // navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
+  
+    const name = `${formData.firstName} ${formData.lastName}`;
+    const { firstName, lastName, errors, ...formDataWithoutName } = formData;
+    // Create a new formData object with combined name
+    const combinedFormData = {
+      ...formDataWithoutName,
+      name: name.trim(), // Trim any leading/trailing spaces
+    };
+    console.log(JSON.stringify(combinedFormData));
+    try {
+      const response = await fetch(`http://localhost:4000/lawyerregister`, {
+        method: "POST",
+        body: JSON.stringify(combinedFormData),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const tokenObject = await response.json();
+      if (response.status === 200) {
+        setSuccessMessage("Registration successful!");
+        setOpenSnackbar(true);
+        navigate("/loginIndex");
+      } else if (response.status === 400) {
+        setErrorMessage(tokenObject.message);
+      }
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
   };
 
   return (
@@ -234,7 +268,6 @@ const Register = () => {
               helperText={passwordError ? "Passwords do not match" : ""}
             />
             </Grid>
-            </Grid>
             <Grid item xs={12}>
             <FormControl variant="outlined" fullWidth>
               <TextField
@@ -244,14 +277,13 @@ const Register = () => {
                 value={Option}
                 onChange={handlGenderChnange}
                 variant="outlined"
-                style={{ marginTop: "20px" }}
               >
                 <MenuItem value="" disabled>
                   Gender
                 </MenuItem>
-                <MenuItem value="1">Male</MenuItem>
-                <MenuItem value="2">Female</MenuItem>
-                <MenuItem value="3">Choose Not To Disclose</MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
+                <MenuItem value="No Disclosure">Choose Not To Disclose</MenuItem>
               </TextField>
             </FormControl>
             </Grid>
@@ -264,35 +296,32 @@ const Register = () => {
               className="form-select"
               name="userType"
               label="User Type"
-              style={{ marginTop: "20px" }}
             >
               <MenuItem value="" disabled>
                 Select option
               </MenuItem>
-              <MenuItem value="1">Advocate</MenuItem>
-              <MenuItem value="2">Lawyer</MenuItem>
-              <MenuItem value="3">Paralegal</MenuItem>
+              <MenuItem value="Advocate">Advocate</MenuItem>
+              <MenuItem value="Lawyer">Lawyer</MenuItem>
+              <MenuItem value="Paralegal">Paralegal</MenuItem>
             </TextField>
           </FormControl>
-            </Grid>
-            {showInput && (
-          <div className='Grids'>
+          {showInput && (
             <Grid container  spacing={2}>
-            {selectedOption !== '2' && (
+            {selectedOption !== "Lawyer" && (
               <Grid item xs={12}>
                 <TextField
                   label="BARC"
                   type="Barc"
                   variant="outlined"
                   fullWidth
-                  name="abarc"
+                  name="barc"
+                  style={{marginTop:"20px"}}
                   value={formData.barc}
                   onChange={handleChange}
-                  style={{amrginTop:"20px"}}
                 />
               </Grid>
             )}
-            {selectedOption !== '2' && (
+            {selectedOption !== "Lawyer" && (
               <Grid item xs={12}>
                 <TextField
                   label="Pratising area"
@@ -300,7 +329,7 @@ const Register = () => {
                   variant="outlined"
                   fullWidth
                   name="practisingarea"
-                  value={formData.password}
+                  value={formData.practisingarea}
                   onChange={handleChange}
                 />
               </Grid>
@@ -317,23 +346,22 @@ const Register = () => {
                     name="caseCategory"
                   >
                     <MenuItem value="">Select Case Category</MenuItem>
-                    <MenuItem value="1">Family Law</MenuItem>
-                    <MenuItem value="2">Criminal Law</MenuItem>
-                    <MenuItem value="3">Consumer Law</MenuItem>
-                    <MenuItem value="4">Business Law</MenuItem>
-                    <MenuItem value="5">Labour Law</MenuItem>
-                    <MenuItem value="6">Constitutional Law</MenuItem>
-                    <MenuItem value="7">Intellectual Law</MenuItem>
-                    <MenuItem value="8">Taxation</MenuItem>
-
+                      <MenuItem value="Family Law">Family Law</MenuItem>
+                      <MenuItem value="Criminal Law">Criminal Law</MenuItem>
+                      <MenuItem value="Consumer Law">Consumer Law</MenuItem>
+                      <MenuItem value="Business Law">Business Law</MenuItem>
+                      <MenuItem value="Labour Law">Labour Law</MenuItem>
+                      <MenuItem value="Constitutional Law">Constitutional Law</MenuItem>
+                      <MenuItem value="Intellectual Property Law">Intellectual Property Law</MenuItem>
+                      <MenuItem value="Taxation Law">Taxation Law</MenuItem>
                   </Select>
                 </FormControl>
             </Grid>
             </Grid>
-          </div>
-          )}
           
-          <div className='last'>
+          )}
+            </Grid>
+            
             <Grid item xs={12}>
               <Button
                 type="submit"
@@ -345,11 +373,29 @@ const Register = () => {
                 Rregister
               </Button>
             </Grid>
-            </div>
-
-
-
+          </Grid>
         </form>
+        <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message={successMessage}
+          />
+
+          {errorMessage && (
+            <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
+              <Typography variant="body1">{errorMessage}</Typography>
+              
+              <Button
+                variant="contained"
+                onClick={() => {
+                  // Handle login button click
+                }}
+              >
+                Login
+              </Button>
+            </Paper>
+          )}
       </Paper>
     </Container>
  </Container>
