@@ -22,7 +22,7 @@ export default function LoginIndex() {
                     Login yourself as a User
                 </h2>
                 <p>Unfold your solution with Professional lawyers</p>
-                <button style={{    width: "100px",height: "35px" ,border: "1px solid black",borderRadius: "20px",backgroundColor: "#d3ac2b",fontSize: "20px" ,marginTop:"25px"}} onClick={()=>{navigate("/loginuser")}}>Login</button>
+                <button style={{    width: "100px",height: "35px" ,border: "1px solid black",borderRadius: "20px",backgroundColor: "#FE9E0D",fontSize: "20px" ,marginTop:"25px"}} onClick={()=>{navigate("/loginuser")}}>Login</button>
             </div>
             <div style={{
       width: '1px',
@@ -33,7 +33,7 @@ export default function LoginIndex() {
             <div style={{display: "flex",flexDirection: "column",rowGap: "9px",alignItems:"center",justifyContent:"center"}}>
                 <h2 style={{fontSize:"32px"}}>Login yourself as a Lawyer</h2>
                 <p>Tell us about your query and get your solutions unfold</p>
-                <button style={{    width: "100px",height: "35px" ,border: "1px solid black",borderRadius: "20px",backgroundColor: "#d3ac2b",fontSize: "20px",marginTop:"25px" }} onClick={()=>{navigate("/loginlawyer")}}>Login</button>
+                <button style={{    width: "100px",height: "35px" ,border: "1px solid black",borderRadius: "20px",backgroundColor: "#FE9E0D",fontSize: "20px",marginTop:"25px" }} onClick={()=>{navigate("/loginlawyer")}}>Login</button>
             </div>
         </div>
     </div>

@@ -177,7 +177,7 @@ const Register = () => {
     <Container maxWidth="sm" style={{ marginTop: "150px",marginBottom:"80px" }}>
       <Paper elevation={3} style={{ padding: "20px" }}>
         <Typography variant="h5" gutterBottom>
-          Rregister
+          Rregister As A Lawyer
         </Typography>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>

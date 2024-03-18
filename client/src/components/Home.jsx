@@ -1,9 +1,20 @@
-import React from "react";
+import React ,{useContext} from "react";
 import BannerBackground from "../resources/home-banner-background.png";
 import BannerImage from "../resources/home-banner-image 2.jpg"
 import { FiArrowRight } from "react-icons/fi";
+import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { state,dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+  const handleOnClick=()=>{
+    if(state){
+      navigate("/clientpost");
+    }else{
+      navigate("/loginIndex")
+    }
+  }
   return (
     <div className="home-container">
       
@@ -25,9 +36,9 @@ const Home = () => {
           <p className="primary-text">
           
           We provide assistance to those seeking help navigating the complexities of getting legal help.
-           Don’t go at it alone. 
+          Don’t go at it alone. 
           </p>
-          <button className="secondary-button">
+          <button className="secondary-button" onClick={handleOnClick}>
             Get Started <FiArrowRight />{" "}
           </button>
         </div>

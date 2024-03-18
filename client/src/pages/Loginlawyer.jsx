@@ -100,7 +100,7 @@ const LoginL = () => {
                 }
               />
               <Grid item xs={12} style={{ margin: "10px" }}>
-                <Link to="/register">Not Registered?</Link>
+                <Link to="/lawyerregister">Not Registered?</Link>
               </Grid>
               <Button
                 variant="contained"

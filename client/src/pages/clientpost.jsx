@@ -4,14 +4,15 @@ import '../CSS/clientpost.css';
 import BannerBackground from "../resources/home-banner-background.png"
 import Navbar from '../components/Navbar';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import Footer from "../components/Footer";
-
+import { UserContext } from "../App";
 // Import the CSS file
 
 
 
 const ClientPost = () => {
+  const { state,dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({//use te new names @garima
     areaoflaw: "",
