@@ -2,9 +2,10 @@ import React from "react";
 import dsa from "../resources/ask (1).png";
 import reshot from "../resources/reshot.png";
 import consul from "../resources/ask (3).png";
-
+import { useNavigate } from "react-router-dom";
 
 const Work = () => {
+  const navigate = useNavigate();
   const workInfoData = [
     {
       image:reshot,
@@ -42,12 +43,27 @@ const Work = () => {
           <div className="work-section-info" key={data.title}>
             <div className="info-boxes-img-container">
               <img src={data.image} alt="" />
-            </div>
+           </div>
              
             <h2>{data.title}</h2>
             <p>{data.text}</p>
-            <button className="secondary-button">{data.button} </button>
-          </div>
+            <button className="secondary-button"
+            onClick={() => {
+            if (data.title === "Hire your lawyer") {
+                navigate("/hirelaw");
+            } else if (data.title === "Ask a Question") {
+                navigate("/clientpost");
+            } else if (data.title === "Consult Lawyer") {
+                navigate("/hirelaw");
+            } else {
+             
+              console.error("Unhandled data title:", data.title);
+            }
+
+             }}            
+            >{data.button} </button>
+            
+          </div> 
         ))}
       </div>
     </div>

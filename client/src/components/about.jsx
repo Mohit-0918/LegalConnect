@@ -2,8 +2,10 @@ import React from "react";
 import AboutBackground from "../resources/about-background.png";
 import AboutBackgroundImage from "../resources/about.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
   return (
     <div className="about-section-container">
       <div className="about-background-image-container">
@@ -24,7 +26,12 @@ const About = () => {
         </p>
         
         <div className="about-buttons-container">
-          <button className="secondary-button">Learn More</button>
+          <button className="secondary-button"
+          onClick={() => {
+            navigate("/hirelaw");
+          }}
+
+          >Learn More</button>
          
         </div>
       </div>
