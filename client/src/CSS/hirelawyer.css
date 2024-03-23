@@ -5,7 +5,7 @@
   height:700px;
   margin-top: 20px;
   align-items: center;
-  
+
 }
 
 .box {
@@ -14,18 +14,18 @@
   background-position: center;
   text-align: center;
   padding: 40px;
-  position: relative; 
+  position: relative;
   display: flex;
   flex-direction: column;/* Set position relative to contain absolutely positioned overlay */
   height:1700px;
   margin-bottom: 20px;
   width:1200px
-  
+
 
 }
 .content{
   background-color: rgba(255, 255, 255, 0.6);
-  opacity: 1; 
+  opacity: 1;
   padding :4px
 }
 .box.content.hi.p{

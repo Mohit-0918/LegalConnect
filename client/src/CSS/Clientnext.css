@@ -1,4 +1,4 @@
-.container{
+/*.container{
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 25px;
@@ -63,30 +63,124 @@ margin-bottom: 10px;
 width: 900px;
 
 }
+*/
+/* Clientnext.css */
+
 .text-center {
-    background-color: #e48f0f; /* Change to your desired color */
-    color: #ffffff;
-    max-width: 80px;
-    margin-left: 370px;
-    /* Change to your desired text color */
-  }
-  .btn{
-    color: white;
-    margin-right: 50px;
-  }
-  .input1{
-    width: 600px; /* Increase width */
-    height: 400px;
-    background-color:rgba(211, 211, 211, 0.967);
-    border: 0;
+  background-color: #e48f0f; /* Change to your desired color */
+  color: #ffffff;
+  max-width: 80px;
+  margin-left: 370px;
+  /* Change to your desired text color */
+}
+.btn{
+  color: white;
+  margin-right: 50px;
+}
+.input1{
+  width: 600px; /* Increase width */
+  height: 400px;
+  background-color:rgba(211, 211, 211, 0.967);
+  border: 0;
 
 
-  }
-  .input{
-    max-width: 600px; /* Increase width */
-    height: 400px;
-    padding-right: 90px;
-    background-color:rgba(211, 211, 211, 0.967);
-    border: 0;
+}
+.input{
+  max-width: 600px; /* Increase width */
+  height: 400px;
+  padding-right: 90px;
+  background-color:rgba(211, 211, 211, 0.967);
+  border: 0;
 
+}
+@media (max-width: 768px) {
+  .cardshadow1,
+  .cardshadow2,
+  .cardshadow3 {
+    margin-bottom: 20px; /* Add some space between cards */
   }
+
+  .input,
+  .input1,
+  .input2 {
+    width: 100%; /* Make textareas take full width */
+  }
+}
+
+/* Responsive styles for smaller devices */
+@media (max-width: 576px) {
+  .cardshadow1,
+  .cardshadow2,
+  .cardshadow3 {
+    padding: 20px; /* Add padding to cards */
+  }
+}
+
+/* General responsive styles */
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border :solid #3b475c;
+}
+
+.maincontainer {
+  width: 100%;
+  max-width: 800px; /* Adjust maximum width as needed */
+}
+
+.cardshadow1,
+.cardshadow2,
+.cardshadow3 {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.input,
+.input1,
+.input2 {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  resize: none; /* Prevent textarea resizing */
+}
+
+.payment-mode {
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Adjustments for images */
+.card-img {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+}
+
+/* Navbar adjustments */
+.navbar {
+  margin-bottom: 30px;
+}
+.cardshadow1{
+border :solid 2px #3b475c;
+}
+.cardshadow2{
+border :solid 2px #3b475c;
+}
+.cardshadow3{
+border :solid 2px #3b475c;
+}
+.maincontainer{
+background-color: #3b475c;
+}
