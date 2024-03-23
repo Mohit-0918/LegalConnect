@@ -1,3 +1,4 @@
+/*
 .Container{
     padding-top:20px;
     margin-left: 400px;
@@ -7,13 +8,14 @@
 }
 .text-center {
 /* Change to your desired color */
+/*
     color: #ffffff;
     max-width: 80px;
     margin-left: 370px;
     margin-right:80 px;
-    /* Change to your desired text color */
-  }
 
+  }
+/*
   .secondary-button {
     padding: 1rem 2.5rem;
     background-color: #fe9e0d;
@@ -42,8 +44,99 @@
   }
   .AA .form-control {
     height: 150px;
-    text-align: top; /* Adjust the height as needed */
+    text-align: top; /* Adjust the height as needed *//*
   }
   .ABCD {
     height:80px; /* Adjust the height as needed */
+  /*}*/
+  /* clientpost.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .Container {
+    padding: 20px;
   }
+  .A {
+    display: flex;
+    flex-direction: column;
+  }
+  .AA {
+    margin-bottom: 20px;
+  }
+}
+
+/* General styles */
+.Container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-bannerImage-container {
+  margin-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+.muted {
+  color: #6c757d;
+}
+
+.secondary-button {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Form styles */
+.FormLabel {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.FormText {
+  font-size: 0.9rem;
+}
+
+/* Textarea styles */
+.FormControl {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+}
+
+/* Select styles */
+.FormSelect {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #495057;
+}
+
+/* Button styles */
+.secondary-button {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Footer styles */
+.Footer {
+  margin-top: 50px;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+}
+
+
