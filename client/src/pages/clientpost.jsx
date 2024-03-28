@@ -4,7 +4,7 @@ import '../CSS/clientpost.css';
 import BannerBackground from "../resources/home-banner-background.png"
 import Navbar from '../components/Navbar';
 import { useNavigate } from "react-router-dom";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import Footer from "../components/Footer";
 import { UserContext } from "../App";
 // Import the CSS file
@@ -12,7 +12,7 @@ import { UserContext } from "../App";
 
 
 const ClientPost = () => {
-  const { state,dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({//use te new names @garima
     areaoflaw: "",
@@ -23,73 +23,71 @@ const ClientPost = () => {
     pincode: "",//pincode
     phonenumber: "",//phonenumber
   });
-   const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
   const [showInput, setShowInput] = useState(false);
 
   const handleOptionChange = (event) => {
     const { value } = event.target;
     setSelectedOption(value);
-    setShowInput(value === '1'|| value === '2');
-// Show additional inputs if option 1 is selected
+    setShowInput(value === '1' || value === '2');
+    // Show additional inputs if option 1 is selected
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-    return(
-      <div>
-        <Navbar/>
-      <div className="Container">
-        <div className="home-bannerImage-container">
+  return (
+    <div className="Container">
+      <div className="home-bannerImage-container">
         <img src={BannerBackground} alt="" />
       </div>
-        <div>
+      <div>
         <Form>
-            <Form.Group className="mb-3">
-              <Form.Select //make this changes like adding name and onchange function to every  select field
-              name ="areaoflaw"
+          <Form.Group className="mb-3">
+            <Form.Select //make this changes like adding name and onchange function to every  select field
+              name="areaoflaw"
               onChange={handleChange}
               aria-label="Default select example" defaultValue="">
               <option disabled value="">Area of Law</option>
-                <option value="1">Family Law</option>
-                <option value="2">Criminal Law</option>
-                <option value="3">Consumer Law</option>
-                <option value="1">Business Law</option>
-                <option value="1">Labour Law</option>
-                <option value="1">Constitutional Law</option>
-                <option value="1">Intellectual Law</option>
-                <option value="1">Taxation </option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-3">
+              <option value="1">Family Law</option>
+              <option value="2">Criminal Law</option>
+              <option value="3">Consumer Law</option>
+              <option value="1">Business Law</option>
+              <option value="1">Labour Law</option>
+              <option value="1">Constitutional Law</option>
+              <option value="1">Intellectual Law</option>
+              <option value="1">Taxation </option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3">
 
-              <Form.Label></Form.Label>
-              <Form.Control type="title" name ="title" onChange={handleChange} placeholder="Title " />
-              <Form.Text muted>
-                contain letters and numbers, and must not contain spaces,
-                special characters, or emoji.
-              </Form.Text>
-            </Form.Group>
+            <Form.Label></Form.Label>
+            <Form.Control type="title" name="title" onChange={handleChange} placeholder="Title " />
+            <Form.Text muted>
+              contain letters and numbers, and must not contain spaces,
+              special characters, or emoji.
+            </Form.Text>
+          </Form.Group>
 
-            <Form.Group className="AA mb-3">
-  <Form.Label></Form.Label>
-  <Form.Control
-    as="textarea"
-    rows={3} // Set the number of rows as needed
-    name="question"
-    onChange={handleChange}
-    placeholder="Question"
-  />
-  <Form.Text muted>
-    Contain letters and numbers, and must not contain spaces,
-    special characters, or emoji.
-  </Form.Text>
-</Form.Group>
-            <div className="A">
+          <Form.Group className="AA mb-3">
+            <Form.Label></Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3} // Set the number of rows as needed
+              name="question"
+              onChange={handleChange}
+              placeholder="Question"
+            />
+            <Form.Text muted>
+              Contain letters and numbers, and must not contain spaces,
+              special characters, or emoji.
+            </Form.Text>
+          </Form.Group>
+          <div className="A">
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="city" name ="city"onChange={handleChange} placeholder=" City" />
+              <Form.Control type="city" name="city" onChange={handleChange} placeholder=" City" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -97,7 +95,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="state" name ="state"onChange={handleChange} placeholder="State" />
+              <Form.Control type="state" name="state" onChange={handleChange} placeholder="State" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -105,7 +103,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="pincode"name ="pincode" onChange={handleChange} placeholder="PIN CODE" />
+              <Form.Control type="pincode" name="pincode" onChange={handleChange} placeholder="PIN CODE" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -113,7 +111,7 @@ const ClientPost = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label></Form.Label>
-              <Form.Control type="phonenumber" name ="phonenumber"onChange={handleChange} placeholder="Phone number" />
+              <Form.Control type="phonenumber" name="phonenumber" onChange={handleChange} placeholder="Phone number" />
               <Form.Text muted>
                 contain letters and numbers, and must not contain spaces,
                 special characters, or emoji.
@@ -121,19 +119,17 @@ const ClientPost = () => {
             </Form.Group>
 
             <div className="">
-            <button className='secondary-button'>Submit</button>
+              <button className='secondary-button'>Submit</button>
             </div>
-            </div>
-          </Form>
+          </div>
+        </Form>
 
-    </div>
-    </div>
-    <Footer/>
+      </div>
     </div>
 
 
 
-    )
+  )
 
 };
 

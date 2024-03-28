@@ -9,7 +9,7 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import { UserContext } from "../App";
 
 const Navbar = () => {
-  const { state,dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
@@ -20,77 +20,44 @@ const Navbar = () => {
     }
   };
 
-  const RenderMenu=()=>{
-    if(!state){
-      return(
-        <>
+  const RenderMenu = () => {
+    return (
+      <>
         <div className="navbar-links-container">
-            <a href="#" onClick={() => scrollToSection("Home")}>
-              <HomeIcon />
-              Home
-            </a>
-            <a href="#" onClick={() => scrollToSection("about")}>
-              <InfoIcon />
-              About
-            </a>
-            <a href="#" onClick={() => scrollToSection("Testimonials")}>
-              <CommentRoundedIcon />
-              Testimonials
-            </a>
-            <a href="#" onClick={() => scrollToSection("Contact")}>
-              <PhoneRoundedIcon />
-              Contact
-            </a>
-            <button
-              className="primary-button"
-              onClick={() => {
-                navigate("/loginIndex");
-              }}
-            >
-              Login
-            </button>
-          </div>
-          <div className="navbar-menu-container">
-            <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
-          </div></>
-      )
-    }else{
-      return(
-        <>
-      <div className="navbar-links-container">
-            <a href="#" onClick={() => scrollToSection("Home")}>
-              <HomeIcon />
-              Home
-            </a>
-            <a href="#" onClick={() => scrollToSection("about")}>
-              <InfoIcon />
-              About
-            </a>
-            <a href="#" onClick={() => scrollToSection("Testimonials")}>
-              <CommentRoundedIcon />
-              Testimonials
-            </a>
-            <a href="#" onClick={() => scrollToSection("Contact")}>
-              <PhoneRoundedIcon />
-              Contact
-            </a>
-            <button
-              className="primary-button"
-              onClick={() => {
-                navigate("/loginIndex");
-              }}
-            >
-              Logout
-            </button>
-          </div>
-          <div className="navbar-menu-container">
-            <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
-          </div>
+          <a href="/nav/home" onClick={() => scrollToSection("Home")}>
+            <HomeIcon />
+            Home
+          </a>
+          <a href="/nav/about" onClick={() => scrollToSection("about")}>
+            <InfoIcon />
+            About
+          </a>
+          <a href="/nav/testomonial" onClick={() => scrollToSection("Testimonials")}>
+            <CommentRoundedIcon />
+            Testimonials
+          </a>
+          <a href="/nav/contact" onClick={() => scrollToSection("Contact")}>
+            <PhoneRoundedIcon />
+            Contact
+          </a>
+          <button
+            className="primary-button"
+            onClick={() => {
+              navigate("/loginIndex");
+            }}
+          >
+            {state ? "Logout" : "Login"}
+          </button>
+        </div>
+        <div className="navbar-menu-container">
+          <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
+        </div>
       </>
+    )
 
-      )
-    }
   }
+
+
   return (
     <nav className="navbar">
       <div className="navbar-logo-container">
