@@ -11,20 +11,22 @@ const Work = () => {
       image:reshot,
       title: "Hire your lawyer",
       text: "Send a legal notice, review a legal document, cases  etc.",
-      button:"Get Lawyer"
-
+      button:"Get Lawyer",
+      routeTo:"hirelaw"
     },
     {
       image:dsa,
       title: "Ask a Question",
       text: "Get legal answers from lawyers. It’s quick, easy, and anonymous!",
-      button:"Get advice"
+      button:"Get advice",      
+     routeTo:"clientpost"
     },
     {
       image:consul,
       title: "Consult Laywer",
       text: "Schedule a 15-minute call with a lawyer.It’s quick, easy, and confidential!",
-     button:"Consult"
+     button:"Consult",
+     routeTo:"mypost"
     },
   ];
 
@@ -47,20 +49,8 @@ const Work = () => {
              
             <h2>{data.title}</h2>
             <p>{data.text}</p>
-            <button className="secondary-button"
-            onClick={() => {
-            if (data.title === "Hire your lawyer") {
-                navigate("/hirelaw");
-            } else if (data.title === "Ask a Question") {
-                navigate("/clientpost");
-            } else if (data.title === "Consult Lawyer") {
-                navigate("/hirelaw");
-            } else {
+            <button className="secondary-button" onClick={() => navigate("/"+ data.routeTo)}
              
-              console.error("Unhandled data title:", data.title);
-            }
-
-             }}            
             >{data.button} </button>
             
           </div> 
@@ -70,4 +60,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Work

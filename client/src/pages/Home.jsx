@@ -12,14 +12,12 @@ import Work from "../components/Work.jsx";
 function home() {
   return (
     <div className="home">
-    <Navbar />
-    <Home/>
-    
-    <About/>
-    <Work/>
-    <Testimonial/>
-    <Contact/>
-    <Footer/>
+      <Home />
+
+      <About />
+      <Work />
+      <Testimonial />
+      <Contact />
 
     </div>
   );
