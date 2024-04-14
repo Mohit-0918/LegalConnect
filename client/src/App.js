@@ -10,15 +10,11 @@ import Lawyerregister from "./pages/lawyerregister.jsx";
 import ClientPost from "./pages/clientpost.jsx";
 import Hirelaw from "./pages/hirelawyer.jsx";
 import MyPost from "./pages/consultlawyer.jsx";
-import { createContext,useReducer} from "react";
-import { initialState,reducer } from "./reducer/UseReducer.js";
 
-export const UserContext=createContext();
 function App() {
-  const [state,dispatch]=useReducer(reducer,initialState);
   return (
     <>
-      <UserContext.Provider value={{state,dispatch}}>
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -37,12 +33,12 @@ function App() {
 
           {localStorage.getItem("token") ? (
             <>
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Home />} />
             </>
           ) : null}
         </Routes>
       </BrowserRouter>
-      </UserContext.Provider>
+      
     </>
   );
 }

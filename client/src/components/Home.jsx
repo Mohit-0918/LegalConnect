@@ -2,11 +2,11 @@ import React ,{useContext} from "react";
 import BannerBackground from "../resources/home-banner-background.png";
 import BannerImage from "../resources/home-banner-image 2.jpg"
 import { FiArrowRight } from "react-icons/fi";
-import { UserContext } from "../App";
+import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { state,dispatch } = useContext(UserContext);
+  const state = useSelector(state => state.user.currentUser);
   const navigate = useNavigate();
   const handleOnClick=()=>{
     if(state){

@@ -9,11 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
+import { loginFailure, loginStart, loginSuccess } from "../redux/userslice";
+import { useDispatch } from "react-redux";
+
 
 const Login = () => {
-  const {dispatch}= useContext(UserContext);
-
+  const dispatch =useDispatch();
   const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -25,9 +26,8 @@ const Login = () => {
   const handleUserLogin = async (e) => {
     // Handle user login logic
     e.preventDefault();
-    console.log(userCredentials);
-
-    // eslint-disable-next-line no-undef
+    dispatch(loginStart())
+    //console.log(userCredentials);
     await fetch(`http://localhost:4000/loginuser`, {
       method: "POST",
       body: JSON.stringify(userCredentials),
@@ -36,13 +36,14 @@ const Login = () => {
       },
     }).then(async (res) => {
       if (res.status === 200) {
-        dispatch({type:"USER",payload:true});
-        const tokenObject = await res.json();
-        localStorage.setItem("token", tokenObject.token);
+        const userData = await res.json();
+        dispatch(loginSuccess(userData))
+        localStorage.setItem("token", userData.token);
         navigate("/");
       } else if (res.status === 403) { // If user not found
         setErrorMessage("Invalid username or password");
       } else {
+        dispatch(loginFailure());
         // Check if response is JSON
         const contentType = res.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {

@@ -12,7 +12,6 @@ import { UserContext } from "../App";
 
 
 const ClientPost = () => {
-  const { state,dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({//use te new names @garima
     areaoflaw: "",

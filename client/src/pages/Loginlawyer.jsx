@@ -9,11 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginStart } from "../redux/userslice";
 
 const LoginL = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-
+  const dispatch=useDispatch();
   const [lawyerCredentials, setlawyerCredentials] = useState({
     email: "",
     password: "",
@@ -22,7 +24,7 @@ const LoginL = () => {
   const handleUserLogin = async (e) => {
     // Handle user login logic
     e.preventDefault();
-  
+    dispatch(loginStart());
     await fetch(`http://localhost:4000/loginlawyer`, {
       method: "POST",
       body: JSON.stringify(lawyerCredentials),
@@ -33,6 +35,7 @@ const LoginL = () => {
       .then(async (res) => {
         if (res.status === 200) {
           const tokenObject = await res.json();
+          dispatch(loginStart(tokenObject));
           localStorage.setItem("token", tokenObject.token);
           navigate("/");
         } else if (res.status === 403) { // If user not found
