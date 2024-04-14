@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginStart } from "../redux/userslice";
+import { loginStart, loginSuccess } from "../redux/userslice";
 
 const LoginL = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const LoginL = () => {
       .then(async (res) => {
         if (res.status === 200) {
           const tokenObject = await res.json();
-          dispatch(loginStart(tokenObject));
+          dispatch(loginSuccess(tokenObject));
           localStorage.setItem("token", tokenObject.token);
           navigate("/");
         } else if (res.status === 403) { // If user not found

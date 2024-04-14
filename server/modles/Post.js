@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const Post = new mongoose.Schema({
+    user:{
+        type:String,
+        required:true,
+        unique:false,
+    },
     areaoflaw:{
         type:String,
         required:true,

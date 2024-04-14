@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -8,8 +8,8 @@ import loginuser from "./routes/auths.js";
 import cookieParser from "cookie-parser"
 import lawyerRegister from "./routes/auths.js";
 import lawyerlogin from "./routes/auths.js";
-
-
+import posts from  './routes/post.js'
+import getPost from './routes/post.js'
 const  app = express()
 app.use(express.json())
 app.use(cors())
@@ -33,7 +33,8 @@ app.use("/" ,loginuser)
 app.use("/",clientregister)
 app.use("/",lawyerRegister)
 app.use("/",lawyerlogin)
-
+app.use("/",posts)
+app.use("/",getPost)
 
 //error handeling
 app.use((err,req,res,next)=>{

@@ -1,5 +1,5 @@
 import express from "express";
-import { post } from "../controllers/post.js";
+import { getPost, post } from "../controllers/post.js";
 
 const router=express.Router();
 
@@ -7,5 +7,6 @@ const router=express.Router();
 router.post("/post",post);
 
 //festch a  post
+router.get("/post/:city",getPost);
 
 export default router

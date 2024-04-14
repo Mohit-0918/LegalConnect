@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const state = useSelector(state => state.user.currentUser);
+  const type=useSelector(state=>state.user.currentUser.type);
   const navigate = useNavigate();
   const handleOnClick=()=>{
-    if(state){
-      navigate("/clientpost");
-    }else{
+    if(state==false){
       navigate("/loginIndex")
     }
+    if (type=="L")
+    navigate("/lawyerprofile")
   }
   return (
     <div className="home-container">
