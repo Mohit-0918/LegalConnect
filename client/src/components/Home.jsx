@@ -15,6 +15,8 @@ const Home = () => {
     }
     if (type=="L")
     navigate("/lawyerprofile")
+    else
+    navigate("/consultlawyer")
   }
   return (
     <div className="home-container">

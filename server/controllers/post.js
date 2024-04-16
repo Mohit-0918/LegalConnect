@@ -16,7 +16,7 @@ export const post=async (req,res,next)=>{
 //Get all the post
 export const getPost=async(req,res,next)=>{
     try{
-        const city=req.body.city;
+        const city=req.params.city;
         // console.log(req.body.city);
         if(!city)
         return next(createError(400,"City is required"));

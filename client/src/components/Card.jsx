@@ -10,12 +10,12 @@ display:${(props)=>props.type==="sm"&&"flex"};
 gap:10px;
 border: 1px solid black;
 `;
-const Image=styled.img`
-width:100%;
-height:${(props)=>props.type==="sm"?"120px":"200px"}
-background-color:#999;
-flex:1;
-`;
+// const Image=styled.img`
+// width:100%;
+// height:${(props)=>props.type==="sm"?"120px":"200px"}
+// background-color:#999;
+// flex:1;
+// `;
 const Details=styled.div`
 display:flex;
 margin-top:${(props)=>props.type!=="sm"&&"16px"};
@@ -46,13 +46,14 @@ const Info=styled.div`
 font-size:14px;
 color:${({theme})=>theme.textsoft}; 
 `;
+const textfield=styled.div``
 const Card = ({type}) => {
     return (
-        <Link to="/video/test" style={{textDecoration:"none"}}>
+        // <Link to="/video/test" style={{textDecoration:"none"}}>
         <Container type={type}>
-            <Image />
+            {/* <Image /> */}
             <Details type={type}>
-                <ChannelImage  type={type}/>
+                {/* FDASSS */}
                 <Text>
                     <Title>client name</Title>
                     <ChannelName>case type</ChannelName> 
@@ -60,7 +61,7 @@ const Card = ({type}) => {
                 </Text>
             </Details>
         </Container>
-        </Link>
+        // </Link>
     )
 }
 
